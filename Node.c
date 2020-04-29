@@ -1,43 +1,74 @@
 #include"Node.h"
 
-typedef union headData
+
+int fillData(Node* NodePointer, int numData, char charData) 
 {
-	//charData for standrad nodes
-	char charData;
-
-	//point to tail node for head node
-	Node* tail;
-
-}headData;
-typedef struct Node
-{
-	//data
-	int numData;
-	headData unionData;
-
-	//Linklist pointer
-	Node* next;
-}Node;
-
-int fillData(Node* NodePointer, int numData, char charData) {
-
-	if (NodePointer == NULL)
-		return 0;
-
+	if (!NodePointer)
+	{
+		return -1;
+	}
+		
 	NodePointer->numData = numData;
 	NodePointer->unionData.charData = charData;
-	return 1;
+
+	return 0;
+}
+
+int  iter(Node* head, int fun(Node* node)) //use the fun to every node from head to tail
+{	
+	int flag = 0;
+	Node* p = head;
+	Node* temp = NULL;
+
+	if (!p) {
+		flag = -1;
+	}
+	else {
+		//pass head information
+		p = p->next;
+
+		for (int i = 1; p != NULL; p = temp, i++)
+		{
+			temp = p->next;
+
+			if (!fun(p)) {
+				flag++;
+
+				/*for debug
+				printf_s("the loop %d has no return\n",i);
+				*/
+
+			}
+
+			/*for debug
+			printf_s("done\n");
+			*/
+		}
+	}
+
+	//the function has no return times
+	return flag; 
+}
+
+int printData(Node* node)
+{
+	if (!node)
+		return -1;
+	else
+		return printf_s("%d\t%c\n", node->numData, node->unionData.charData);
 }
 
 
-Node* creatLinklist() {
+Node* creatLinklist() 
+{
 	//set flag for only one return requirement
-	int flag = 1;
+	int flag = 0;
 
-	Node* head = (Node*)malloc(sizeof(Node));
+	Node* head = (Node*)malloc(LEN);
 
-	if (head == NULL) {
-		flag = 0;
+	if (!head) 
+	{
+		return NULL;
 	}
 	else {	  //init
 		
@@ -49,36 +80,38 @@ Node* creatLinklist() {
 		//init pointer with null
 		head->next = NULL;
 	}
-
 	
-	if (flag)
-		return head;
-	else
-		return NULL;
+	return head;
 }
 
-Node* addNode(Node* head, int tag, int numData , char charData) {	//tag is the node tag before new node
+int addNode(Node* head, int tag, int numData , char charData)	//tag is the node tag before new node
+{	
+	
+	int flag = 0;
 
-	int flag = 1;
-
-	if (tag > head->numData) {
-		flag = 0;
+	if (!head)
+	{
+		flag = -1;
+	}
+	else if (tag > head->numData) {
+		flag = -1;
 	}
 	else {
-		Node* node = (Node*)malloc(sizeof(Node));
+		Node* node = (Node*)malloc(LEN);
 
-		if (!fillData(node, numData, charData)) {
-			flag = 0;
+		if (fillData(node, numData, charData)) 
+		{
+			flag = -1;
 		}
 		else {
-
 			Node* p = head;
-			if (tag == head->numData) {
+
+			if (tag == head->numData) 
+			{
 				p = p->unionData.tail;
 
 				p->next = node;
 				head->unionData.tail = node;
-
 				node->next = NULL;
 
 				head->numData++;
@@ -90,90 +123,63 @@ Node* addNode(Node* head, int tag, int numData , char charData) {	//tag is the n
 				p->next = node;
 
 				head->numData++;
-			}
-
-			
+			}			
 		}
 	}
-	if (flag)
-		return head;
-	else
-		return NULL;
+	return flag;
 }
 
-Node* delete(Node* head, int tag) {	   //tag is the deleted one
-	int flag = 1;
-	if (tag == 0) {
-		free(head);
-		printf_s("head node freed\n");
-		flag = 0;
+int delete(Node* head, int tag)		//tag is the deleted one,when tag = 0 whole linklist will be deleted
+{	   
+	int flag = 0;
+
+	if (!head)
+	{
+		flag = -1;
 	}
-	else if (tag < head->numData) {
-		flag = 0;
+	else if (tag == 0) {
+		if (!head->numData)
+		{
+			free(head);
+		}
+		else {
+			//before delete the head,clear the content node
+			clear(head);
+			free(head);
+		}
+		printf_s("whole linklist freed\n");
+	}
+	else if (tag > head->numData) {
+		flag = -1;
 	}
 	else {
 		Node* p = head;
 
 		for (int i = 1; i < tag; p = p->next, i++);
+
 		Node* del = p->next;
 		p->next = p->next->next;
 
 		free(del);
+
 		head->numData--;
 	}
 
-	if (flag)
-		return head;
-	else
-		return NULL;
+
 }
 
-int  iter(Node* head, int fun(Node* node)) {	//use the fun to every node from head to tail
-	int flag = 1;
-	Node* p = head;
-	Node* temp =NULL;
+int clear(Node* head)	//free all nodes but remain the head
+{	
 
-	if (p == NULL) {
-		flag = 0;
+	if (!head)
+	{
+		return -1;
 	}
-	else {
-		//pass head information
-		p = p->next;
 
-		for (int i =1; p != NULL; p = temp,i++)
-		{
-			temp = p->next;
-
-			if (!fun(p)) {
-				flag--;
-
-				/*for debug
-				printf_s("the loop %d has no return\n",i);
-				*/
-				
-			}
-
-			/*for debug
-			printf_s("done\n");
-			*/
-		}
-	}
-	
-	return flag; 
-}
-
-int printData(Node* node)
-{
-	if (node != NULL)
-		return printf_s("%d\t%c\n", node->numData, node->unionData.charData);
-	else
-		return node;
-}
-
-Node* clear(Node* head) {	//free all nodes but remain the head
 	//delete all nodes
 	iter(head, free);
+
 	head->numData = 0;
 
-	return head;
+	return 0;
 }

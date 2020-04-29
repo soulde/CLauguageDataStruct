@@ -1,4 +1,4 @@
 ﻿  Node.c
-D:\学习\数据结构\CLauguageDataStruct\Node.c(170,14): warning C4047: “return”:“int”与“Node *”的间接级别不同
-D:\学习\数据结构\CLauguageDataStruct\Node.c(175,17): warning C4133: “函数”: 从“void (__cdecl *)(void *)”到“int (__cdecl *)(Node *)”的类型不兼容
+D:\学习\数据结构\CLauguageDataStruct\Node.c(180,17): warning C4133: “函数”: 从“void (__cdecl *)(void *)”到“int (__cdecl *)(Node *)”的类型不兼容
+D:\学习\数据结构\CLauguageDataStruct\Node.c(169): warning C4716: “delete”: 必须返回一个值
   CLauguageDataStruct.vcxproj -> D:\学习\数据结构\CLauguageDataStruct\Debug\CLauguageDataStruct.exe

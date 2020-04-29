@@ -2,16 +2,41 @@
 #include<stdlib.h>
 #include<stdio.h>
 
+#define LEN sizeof(Node) 
+typedef union headData headData;
 typedef struct Node Node;
 
-Node* creatLinklist();
 
-Node* delete(Node* head, int tag);
+typedef union headData
+{
+	//charData for standrad nodes
+	char charData;
 
-Node* addNode(Node* head, int tag, int numData, char charData);
+	//point to tail node for head node
+	Node* tail;
 
-int  iter(Node* head, int fun(Node* node));
+}headData;
+typedef struct Node
+{
+	//data
+	int numData;
+	headData unionData;
+
+	//Linklist pointer
+	Node* next;
+}Node;
+
+int fillData(Node* NodePointer, int numData, char charData);
+
+int iter(Node* head, int fun(Node* node));
 
 int printData(Node* node);
 
-Node* clear(Node* head);
+
+Node* creatLinklist();
+
+int delete(Node* head, int tag);
+
+int addNode(Node* head, int tag, int numData, char charData);
+
+int clear(Node* head);
