@@ -26,16 +26,20 @@ typedef struct Node
 	Node* next;
 }Node;
 
+
 int fillData(Node* NodePointer, int numData, char charData);
 
-int iter(Node* head, int fun(Node* node));
+int iter(Node* head, int fun(Node* node),int delTag);
 
 int printData(Node* node);
 
+int printNum(Node* node);
 
 Node* creatLinklist();
 
 int delete(Node* head, int tag);
+
+int remove(Node* del);
 
 int addNode(Node* head, int tag, int numData, char charData);
 

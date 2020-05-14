@@ -27,7 +27,7 @@ int main()
 		addNode(head, i, num[i], string[i]);
 	}
 	//iter and print test
-	iter(head, printData);
+	iter(head, printData,0);
 	
 	//delete function test
 	Node* p = head->next;
