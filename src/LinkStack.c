@@ -1,4 +1,4 @@
-#include "LinkStack.h"
+#include "..\include\LinkStack.h"
 
 
 int pop(Node* head)

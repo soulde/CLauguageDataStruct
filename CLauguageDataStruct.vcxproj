@@ -138,16 +138,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="LinkStack.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="Node.c" />
-    <ClCompile Include="Queue.c" />
+    <ClCompile Include="src\LinkStack.c" />
+    <ClCompile Include="src\Node.c" />
+    <ClCompile Include="src\Queue.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DataStructIndex.h" />
-    <ClInclude Include="LinkStack.h" />
-    <ClInclude Include="Node.h" />
-    <ClInclude Include="Queue.h" />
+    <ClInclude Include="include\DataStructIndex.h" />
+    <ClInclude Include="include\LinkStack.h" />
+    <ClInclude Include="include\Node.h" />
+    <ClInclude Include="include\Queue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
