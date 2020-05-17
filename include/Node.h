@@ -2,7 +2,8 @@
 #include<stdlib.h>
 #include<stdio.h>
 
-#define LEN sizeof(Node) 
+#define NLEN sizeof(Node) 
+
 typedef union headData headData;
 typedef struct Node Node;
 
@@ -39,7 +40,7 @@ Node* creatLinklist();
 
 int delete(Node* head, int tag);
 
-int remove(Node* del);
+int delNext(Node* del);
 
 int addNode(Node* head, int tag, int numData, char charData);
 

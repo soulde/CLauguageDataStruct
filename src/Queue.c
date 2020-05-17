@@ -9,7 +9,7 @@ int EnQueue(Node* head, int numData, char charData)
 		flag = -1;
 	}
 	else {
-		Node* node = (Node*)malloc(LEN);
+		Node* node = (Node*)malloc(NLEN);
 		fillData(head, numData, charData);
 
 		head->unionData.tail->next = node;

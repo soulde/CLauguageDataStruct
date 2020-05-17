@@ -27,6 +27,12 @@
     <ClCompile Include="src\Queue.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\BinaryTree.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="test\LinkListTest.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\DataStructIndex.h">
@@ -39,6 +45,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="include\Queue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BinaryTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Test.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

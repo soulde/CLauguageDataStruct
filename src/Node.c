@@ -77,7 +77,7 @@ Node* creatLinklist()
 	//set flag for only one return requirement
 	int flag = 0;
 
-	Node* head = (Node*)malloc(LEN);
+	Node* head = (Node*)malloc(NLEN);
 
 	if (!head) 
 	{
@@ -110,7 +110,7 @@ int addNode(Node* head, int tag, int numData , char charData)	//tag is the node 
 		flag = -1;
 	}
 	else {
-		Node* node = (Node*)malloc(LEN);
+		Node* node = (Node*)malloc(NLEN);
 
 		if (fillData(node, numData, charData)) 
 		{
@@ -178,10 +178,10 @@ int delete(Node* head, int tag)		//tag is the deleted one,when tag = 0 whole lin
 		head->numData--;
 	}
 
-
+	return flag;
 }
 
-int remove(Node* del) //remove the Node after del
+int delNext(Node* del) //remove the Node after del
 {
 
 	Node* p = del->next;
