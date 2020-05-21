@@ -1,4 +1,4 @@
-#include "..\include\LinkStack.h"
+#include "LinkStack.h"
 
 
 int pop(Node* head)
@@ -28,7 +28,7 @@ int push(Node* head, int numData, char charData)
 	}
 	else {
 		Node* node = (Node*)malloc(NLEN);
-		fillData(head, numData, charData);
+		fillData(node, numData, charData);
 
 		node->next = head->next;
 		head->next = node;
